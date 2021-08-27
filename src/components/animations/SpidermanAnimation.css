@@ -8,9 +8,9 @@
 }
 
 #spiderman-container .spiderman {
-    width: 300px;
+    width: 150px;
     vertical-align: top;
-    margin-top: -30px;
+    margin-top: 30px;
     animation-name: anime;
     animation-duration: 3s;
     animation-iteration-count: infinite;
@@ -18,10 +18,10 @@
   }
   
   .shadow {
-    width: 200px;
-    height: 20px;
-    margin: 20px 0;
-    margin-left: 20px;
+    width: 100px;
+    height: 10px;
+    margin: 10px 0;
+    margin-left: 10px;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     animation: shadow 3s alternate infinite;
