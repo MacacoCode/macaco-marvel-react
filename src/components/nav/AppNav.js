@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Logo from '../Logo';
 
 const AppNav = () => {
   const { module } = useParams();
   return (
     <>
       <div className="app-logo">
-        <Link className={module === 'home' ? 'selected-link ' : ''} to="/">Macaco Logo</Link>
+        <Link className={module === 'home' ? 'selected-link ' : ''} to="/"><Logo /> </Link>
       </div>
       <ul>
         <li>

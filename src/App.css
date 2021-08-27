@@ -19,8 +19,13 @@
 
 .app-logo {
   position: absolute;
-  left: 0;
+  left: 5vh;
   top: calc(10px + 2vmin);
+}
+.app-logo a img {
+  width: 60px;
+  height: 60px;
+  filter: invert(1);
 }
 
 .app-header  ul  li {
