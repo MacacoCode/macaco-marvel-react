@@ -1,7 +1,7 @@
 //useFetch.js
 import { useState, useEffect } from 'react';
 
-function useFetch(url, options) {
+function useFetch(url, options = {}) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
