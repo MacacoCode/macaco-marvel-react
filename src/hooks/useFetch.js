@@ -20,8 +20,6 @@ function useFetch(url, options = {}) {
       })
       .then((res) => {
           setLoading(false);
-          //checking for multiple responses for more flexibility 
-          //with the url we send in.
           setResponse(res);
       })
       .catch((err) => {
