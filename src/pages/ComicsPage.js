@@ -4,9 +4,9 @@ import { API_KEY, MARVEL_API } from '../constants';
 import useFetch from '../hooks/useFetch';
 
 const ComicsPage = () => {
-    const { data, loading, error, status } = useFetch(`${MARVEL_API}/v1/public/comics${API_KEY}&offset=0&limit=16`)
+    const { response, loading, error, status } = useFetch(`${MARVEL_API}/v1/public/comics${API_KEY}&offset=0&limit=16`)
     if (loading) return <SpidermanAnimation loading={true} />
-    console.log(data);
+    console.log(response, error, status);
     return (
         <>
         </>

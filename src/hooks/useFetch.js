@@ -20,7 +20,8 @@ function useFetch(url, options = {}) {
       })
       .then((res) => {
         setLoading(false);
-        setResponse(res);
+        if (res.data) setResponse(res.data)
+        if (!res.data) setResponse(res);
       })
       .catch((err) => {
         setLoading(false);
