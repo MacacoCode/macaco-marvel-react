@@ -6,7 +6,7 @@ const ComicsPage = () => {
 
     return (
         <>
-        <SpidermanAnimation loading={<Loading />} />
+        <SpidermanAnimation loading={true} />
         </>
     );
 }
