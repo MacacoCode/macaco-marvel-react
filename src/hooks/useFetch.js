@@ -10,26 +10,26 @@ function useFetch(url, options = {}) {
   const signal = controller.signal;
 
   useEffect(() => {
-      setLoading(true)
-      setResponse(null);
-      setError(null);
-      fetch(url, { ...options, signal })
+    setLoading(true)
+    setResponse(null);
+    setError(null);
+    fetch(url, { ...options, signal })
       .then((res) => {
-          setStatus(res.status);
-          return res.json();
+        setStatus(res.status);
+        return res.json();
       })
       .then((res) => {
-          setLoading(false);
-          setResponse(res);
+        setLoading(false);
+        setResponse(res);
       })
       .catch((err) => {
-          setLoading(false)
-          setError('An error occurred. Awkward..')
-      })
-      return () => {
-        controller.abort();
-      }
-  }, [url])
+        setLoading(false);
+        setError('An error occurred. Awkward..');
+      });
+    return () => {
+      controller.abort();
+    }
+  }, [url]);
 
   return { response, loading, error, status };
 };
