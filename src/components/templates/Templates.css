@@ -1,0 +1,37 @@
+/* Card.js Styles */
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 200px;
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0.01em 0.01em 0.1em 0.01em rgba(248, 248, 248, 0.438);
+    transition: 0.3s;
+    border-radius: 5px;
+}
+/* On mouse-over, add a deeper shadow */
+.card-container:hover {
+    box-shadow: 0 5px 10px 0 rgba(248, 248, 248, 0.658);
+  }
+  
+.card-header, .card-footer {
+    min-height: 25px;
+    padding: 2px 16px;
+      
+}
+.card-children {
+    display: flex;
+    flex: 1;
+    min-height: 150px;
+    padding: 2px 16px;
+}
+.card-children img {
+    border-radius: 5px 5px 0 0;
+}
+
+/* Image.js Styles*/
+
+.image {
+    width: 100%;
+}

@@ -1,0 +1,22 @@
+.grid-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  
+  .grid-page-item {
+      flex-basis: 25%;
+
+  }
+  
+  @media (max-width: 1024px) {
+      .grid-page-item {
+          flex-basis: 50%;
+      }
+    }
+  
+  @media (max-width: 480px) {
+      .grid-page-item {
+          flex-basis: auto;
+      }
+  }

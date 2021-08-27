@@ -1,8 +1,10 @@
 //useFetch.js
 import { useState, useEffect } from 'react';
 
+const defaultData = { results: [] };
+
 function useFetch(url, options = {}) {
-  const [response, setResponse] = useState(null);
+  const [data, setData] = useState(defaultData);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(null);
@@ -11,7 +13,7 @@ function useFetch(url, options = {}) {
 
   useEffect(() => {
     setLoading(true)
-    setResponse(null);
+    setData(defaultData);
     setError(null);
     fetch(url, { ...options, signal })
       .then((res) => {
@@ -20,8 +22,8 @@ function useFetch(url, options = {}) {
       })
       .then((res) => {
         setLoading(false);
-        if (res.data) setResponse(res.data)
-        if (!res.data) setResponse(res);
+        if (res.data) setData(res.data)
+        if (!res.data) setData(res);
       })
       .catch((err) => {
         setLoading(false);
@@ -32,7 +34,7 @@ function useFetch(url, options = {}) {
     }
   }, [url]);
 
-  return { response, loading, error, status };
+  return { data, loading, error, status };
 };
 
 export default useFetch;

@@ -13,9 +13,9 @@ function App() {
           <Router>
             <Switch>
               <Route path="/:module">
-                <header className="app-header">
+                <nav className="app-header">
                   <AppNav />
-                </header>
+                </nav>
                 <Module />
               </Route>
               <Route exact path="/">
