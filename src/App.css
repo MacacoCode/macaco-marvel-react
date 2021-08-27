@@ -1,10 +1,12 @@
-/* .App {
-  text-align: center;
-} */
+.App {
+  background-color: #282c34;
+  color: white;
+  min-height: 100vh;
+} 
 
 .app-header, .app-header ul {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   display:-webkit-flex;
   flex-direction: row;

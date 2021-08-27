@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 const AppNav = () => {
-  const [optionSelected, setOptionSelected] = useState('/');
+  const { module } = useParams();
   return (
     <>
       <div className="app-logo">
-        <Link className={optionSelected === '/' ? 'selected-link ' : ''} onClick={() => setOptionSelected('/')} to="/">Macaco Logo</Link>
+        <Link className={module === 'home' ? 'selected-link ' : ''} to="/">Macaco Logo</Link>
       </div>
       <ul>
         <li>
-          <Link className={optionSelected === '/comics' ? 'selected-link ' : ''}  onClick={() => setOptionSelected('/comics')} to="/comics">Comics</Link>
+          <Link className={module === 'comics' ? 'selected-link ' : ''} to="/comics">Comics</Link>
         </li>
         <li>
-          <Link className={optionSelected === '/characters' ? 'selected-link ' : ''}  onClick={() => setOptionSelected('/characters')} to="/characters">Characters</Link>
+          <Link className={module === 'characters' ? 'selected-link ' : ''}  to="/characters">Characters</Link>
         </li>
       </ul>
     </>
