@@ -45,11 +45,9 @@ const CharactersPage = () => {
 
     useEffect(() => {
         if (results && results.length > 0 && status === 200) {
-            setData((currState) => {
-                const res = [...currState, ...results];
-                dispatch({ actionType: 'ADDTOSTATE', type: 'characters', payload: res })
-                return res;
-            });
+            const res = [...data, ...results];
+            setData(res);
+            dispatch({ actionType: 'ADDTOSTATE', type: 'characters', payload: res })
         }
     }, [results]);
     if (loading && data.length === 0) return <SpidermanAnimation loading={true} />
