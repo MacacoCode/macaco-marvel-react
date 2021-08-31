@@ -35,3 +35,10 @@
 .image {
     width: 100%;
 }
+
+/* Mask.js Styles */
+
+.mask {
+    height: 100%;
+    width: 100%;
+}

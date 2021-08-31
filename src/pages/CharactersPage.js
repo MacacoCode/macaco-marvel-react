@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Loading from '../components/animations/Loading';
 import SpidermanAnimation from '../components/animations/SpidermanAnimation';
+import StarIcon from '../components/icons/StarIcon';
 import Card from '../components/templates/Card';
 import Image from '../components/templates/Image';
 import { API_KEY, MARVEL_API } from '../constants';
@@ -60,7 +61,14 @@ const CharactersPage = () => {
                         refValue={lasItemElementRef}
                         className="grid-page-item"
                         key={res.id}
-                        header={res.name}
+                        header={(
+                            <>
+                                {res.name}
+                                <span className="favorite-icon">
+                                    <StarIcon />
+                                </span>
+                            </>
+                        )}
                     >
                         <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.name} />
                     </Card>
@@ -70,7 +78,14 @@ const CharactersPage = () => {
                 <Card
                     className="grid-page-item"
                     key={res.id}
-                    header={res.name}
+                    header={(
+                        <>
+                            {res.name}
+                            <span className="favorite-icon">
+                                <StarIcon />
+                            </span>
+                        </>
+                    )}
                 >
                     <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.name} />
                 </Card>

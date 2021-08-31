@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useRef, useState  } from 'react';
 import Loading from '../components/animations/Loading';
 import SpidermanAnimation from '../components/animations/SpidermanAnimation';
+import StarIcon from '../components/icons/StarIcon';
 import Card from '../components/templates/Card';
 import Image from '../components/templates/Image';
 import { API_KEY, MARVEL_API } from '../constants';
@@ -45,11 +46,9 @@ const ComicsPage = () => {
 
     useEffect(() => {
         if (results && results.length > 0 && status === 200) {
-            setData((currState) => {
-                const res = [...currState, ...results];
-                dispatch({ actionType: 'ADDTOSTATE', type: 'comics', payload: res })
-                return res;
-            });
+            const res = [...data, ...results];
+            setData(res);
+            dispatch({ actionType: 'ADDTOSTATE', type: 'comics', payload: res });
         }
     }, [results]);
     if (loading && data.length === 0) return <SpidermanAnimation loading={true} />
@@ -62,7 +61,14 @@ const ComicsPage = () => {
                         refValue={lasItemElementRef}
                         className="grid-page-item"
                         key={res.id}
-                        header={res.title}
+                        header={(
+                            <>
+                                {res.title}
+                                <span className="favorite-icon">
+                                    <StarIcon />
+                                </span>
+                            </>
+                        )}
                     >
                         <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.name} />
                     </Card>
@@ -72,7 +78,14 @@ const ComicsPage = () => {
                 <Card
                     className="grid-page-item"
                     key={res.id}
-                    header={res.title}
+                    header={(
+                        <>
+                            {res.title}
+                            <span className="favorite-icon">
+                                <StarIcon />
+                            </span>
+                        </>
+                    )}
                 >
                     <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.name} />
                 </Card>

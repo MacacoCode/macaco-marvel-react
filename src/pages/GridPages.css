@@ -9,6 +9,9 @@
       flex-basis: 25%;
 
   }
+.favorite-icon {
+    float: right;
+}
   
   @media (max-width: 1024px) {
       .grid-page-item {

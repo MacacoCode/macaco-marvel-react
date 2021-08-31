@@ -1,0 +1,14 @@
+.star-icon {
+    width: 25px;
+    height: 25px;
+    filter: invert(1);
+}
+
+.selected-star {
+    fill: rgb(0, 17, 255);  
+}
+
+.star-icon:hover {
+    transition: 500ms;
+    fill: rgb(0, 17, 255);
+}
