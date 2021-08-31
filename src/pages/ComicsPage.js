@@ -1,19 +1,25 @@
-import React, { useCallback, useEffect, useRef, useState  } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState  } from 'react';
 import Loading from '../components/animations/Loading';
 import SpidermanAnimation from '../components/animations/SpidermanAnimation';
 import Card from '../components/templates/Card';
 import Image from '../components/templates/Image';
 import { API_KEY, MARVEL_API } from '../constants';
 import useFetch from '../hooks/useFetch';
+import { store } from '../store';
 import './GridPages.css';
 
 const limit = 16;
 
 const ComicsPage = () => {
+    const { state: { comics = [] }, dispatch } = useContext(store);
     const [offset, setOffset] = useState(0);
+    const [fetchData, setFetchData] = useState(false);
     const [data, setData] = useState([]);
-    const { data: { results }, loading, error, status } = useFetch(`${MARVEL_API}/v1/public/comics${API_KEY}&offset=${offset}&limit=${limit}`)
-   
+    const { data: { results }, loading, error, status } = useFetch(`${MARVEL_API}/v1/public/comics${API_KEY}&offset=${offset}&limit=${limit}`, fetchData);
+    const compareDataParams = (length, offst, lmt) => {
+        return length < (offst + lmt);
+    };
+
     const observer = useRef(null); 
     const lasItemElementRef = useCallback((node) => {
         if (loading) return;
@@ -21,14 +27,29 @@ const ComicsPage = () => {
         observer.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 setOffset((currState) => currState + limit);
+                if (compareDataParams(data.length, offset, limit)) setFetchData(true);
             }
         });
         if (node) observer.current.observe(node);
     }, [loading]);
 
     useEffect(() => {
-        if (results && results.length >= 0 && status === 200) {
-            setData((currState) => [...currState, ...results]);
+        if (compareDataParams(comics.length, offset, limit)) setFetchData(true);
+        setData(comics);
+        setOffset(comics.length || 0);
+    }, []);
+
+    useEffect(() => {
+        if (loading === false) setFetchData(false);
+    }, [loading]);
+
+    useEffect(() => {
+        if (results && results.length > 0 && status === 200) {
+            setData((currState) => {
+                const res = [...currState, ...results];
+                dispatch({ actionType: 'ADDTOSTATE', type: 'comics', payload: res })
+                return res;
+            });
         }
     }, [results]);
     if (loading && data.length === 0) return <SpidermanAnimation loading={true} />
