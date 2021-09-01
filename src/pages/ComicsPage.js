@@ -2,8 +2,6 @@ import React, { useCallback, useContext, useEffect, useRef, useState  } from 're
 import Loading from '../components/animations/Loading';
 import SpidermanAnimation from '../components/animations/SpidermanAnimation';
 import CustomCard from '../components/CustomCard';
-import StarIcon from '../components/icons/StarIcon';
-import Card from '../components/templates/Card';
 import Image from '../components/templates/Image';
 import { API_KEY, MARVEL_API } from '../constants';
 import useFetch from '../hooks/useFetch';
