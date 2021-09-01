@@ -63,7 +63,7 @@ const CharactersPage = () => {
                         cardClassName="grid-page-item"
                         iconClassName="favorite-icon"
                         title={res.name}
-                        key={res.id}
+                        key={`${res.id}-${index}`}
                         onClickFavorite={() => handleAddToFavorites(res)}
                     >
                         <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.name} />
@@ -75,7 +75,7 @@ const CharactersPage = () => {
                     cardClassName="grid-page-item"
                     iconClassName="favorite-icon"
                     title={res.name}
-                    key={res.id}
+                    key={`${res.id}-${index}`}
                     onClickFavorite={() => handleAddToFavorites(res)}
                 >
                     <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.name} />
