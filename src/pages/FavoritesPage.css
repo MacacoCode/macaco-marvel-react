@@ -16,6 +16,10 @@
     width: auto;
     flex-basis: 50%;
 }
+
+.favorites-page-title {
+    flex-basis: 100%;
+}
 @media (max-width: 1024px) {
     .favorites-page-item {
         flex-basis: 100%;

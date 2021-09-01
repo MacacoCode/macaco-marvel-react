@@ -16,7 +16,6 @@ function Main() {
       const item = localStorage.getItem(key);
       payload[key] = JSON.parse(item);
     }
-    console.log(payload);
     dispatch({ actionType: 'INITIALIZE', payload });
   }
   useEffect(() => {
