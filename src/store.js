@@ -11,13 +11,22 @@ const { Provider } = store;
 const StoreProvider = ({ children }) => {
 
   const addFavorite = (stt, type, payload) => {
-    const result = stt[type].push(payload);
+    console.log(stt, type, payload)
+    let result = [];
+    if (stt[type]) {
+      result = stt[type].push(payload);
+    } else {
+      result = [payload];
+    }
     localStorage.setItem(`${type}`, result);
     return result;
   };
 
   const removeFavorite = (stt, type, payload) => {
-    const result = stt[type].filter((item) => item.id !== payload);
+    let result = [];
+    if (stt[type]) {
+      result = stt[type].filter((item) => item.id !== payload);
+    }
     localStorage.setItem (`${type}`, result);
     return result;
   };

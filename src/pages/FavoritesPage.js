@@ -9,7 +9,7 @@ const FavoritesPage = () => {
     return (
         <div className="favorites-page">
             <div className="favorites-comics">
-                {favoriteComics.map((res) => (
+                {favoriteComics && favoriteComics.map((res) => (
                     <CustomCard
                         cardClassName="favorites-page-item"
                         iconClassName="favorite-icon"
@@ -21,7 +21,7 @@ const FavoritesPage = () => {
                 ))}
             </div>
             <div className="favorites-characters">
-                {favoriteCharacters.map((res) => (
+                {favoriteCharacters && favoriteCharacters.map((res) => (
                     <CustomCard
                         cardClassName="favorites-page-item"
                         iconClassName="favorite-icon"
