@@ -2,29 +2,39 @@ import React, { createContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 export const store = createContext({
-  state: { comics: [], characters: [], favorites: [] },
-  dispatch: ({ actionType, type, payload = { id } }) => {}
+  state: { comics: [], characters: [], favoriteComics: [], favoriteCharacters: [] },
+  dispatch: ({ actionType, type, payload }) => {},
 });
 
 const { Provider } = store;
 
 const StoreProvider = ({ children }) => {
 
-  const [state, dispatch] = useReducer((state, { actionType, type, payload = { id } }) => {
+  const addFavorite = (stt, type, payload) => {
+    const result = stt[type].push(payload);
+    localStorage.setItem(`${type}`, result);
+    return result;
+  };
+
+  const removeFavorite = (stt, type, payload) => {
+    const result = stt[type].filter((item) => item.id !== payload);
+    localStorage.setItem (`${type}`, result);
+    return result;
+  };
+
+  const [state, dispatch] = useReducer((state, { actionType, type, payload }) => {
     switch (actionType) {
         case 'INITIALIZE':
           return payload;
         case 'ADDFAVORITE':
-          localStorage.setItem(`${type}-${id}`, payload);
+          return addFavorite(state, type, payload);
         case 'ADDTOSTATE':
           return {
             ...state,
             [type]:  [...payload],
           };
         case 'REMOVEFAVORITE':
-          localStorage.removeItem(`${type}-${id}`);
-        case 'REMOVE':
-          return state[type].filter((item) => item.id !== id && item.type !== type);
+          return removeFavorite(state, type, payload);
         default:
           throw new Error();
     };

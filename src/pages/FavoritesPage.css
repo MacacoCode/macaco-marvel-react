@@ -1,0 +1,30 @@
+.favorites-page {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.favorites-comics, .favorites-characters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-bottom: 50px;
+    flex-basis: 50%;
+}
+.favorites-page-item {
+    flex-basis: 50%;
+}
+@media (max-width: 1024px) {
+    .favorites-page-item {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .favorites-page {
+        flex-direction: column;
+    }
+    .grid-page {
+        flex-basis: 100%;
+    }
+}

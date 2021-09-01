@@ -1,12 +1,14 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Loading from '../components/animations/Loading';
 import SpidermanAnimation from '../components/animations/SpidermanAnimation';
+import CustomCard from '../components/CustomCard';
 import StarIcon from '../components/icons/StarIcon';
 import Card from '../components/templates/Card';
 import Image from '../components/templates/Image';
 import { API_KEY, MARVEL_API } from '../constants';
 import useFetch from '../hooks/useFetch';
 import { store } from '../store';
+import { compareDataParams } from '../utilities/compareDataParams';
 import './GridPages.css';
 
 const limit = 16;
@@ -17,9 +19,6 @@ const CharactersPage = () => {
     const [fetchData, setFetchData] = useState(false);
     const [data, setData] = useState([]);
     const { data: { results }, loading, error, status } = useFetch(`${MARVEL_API}/v1/public/characters${API_KEY}&offset=${offset}&limit=${limit}`, fetchData);
-    const compareDataParams = (length, offst, lmt) => {
-        return length < (offst + lmt);
-    };
 
     const observer = useRef(null); 
     const lasItemElementRef = useCallback((node) => {
@@ -33,6 +32,10 @@ const CharactersPage = () => {
         });
         if (node) observer.current.observe(node);
     }, [loading]);
+
+    const handleAddToFavorites = (payload) => {
+        dispatch({ actionType: 'ADDFAVORITE', type: 'favoriteCharacters', payload })
+    };
 
     useEffect(() => {
         if (compareDataParams(characters.length, offset, limit)) setFetchData(true);
@@ -57,38 +60,28 @@ const CharactersPage = () => {
         {data && data.length > 0 && data.map((res, index) => {
             if (data.length === index + 1) {
                 return (
-                    <Card 
+                    <CustomCard
                         refValue={lasItemElementRef}
-                        className="grid-page-item"
+                        cardClassName="grid-page-item"
+                        iconClassName="favorite-icon"
+                        title={res.name}
                         key={res.id}
-                        header={(
-                            <>
-                                {res.name}
-                                <span className="favorite-icon">
-                                    <StarIcon />
-                                </span>
-                            </>
-                        )}
+                        onClickFavorite={() => handleAddToFavorites(res)}
                     >
                         <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.name} />
-                    </Card>
+                    </CustomCard>
                 )
             }
             return (
-                <Card
-                    className="grid-page-item"
+                <CustomCard
+                    cardClassName="grid-page-item"
+                    iconClassName="favorite-icon"
+                    title={res.name}
                     key={res.id}
-                    header={(
-                        <>
-                            {res.name}
-                            <span className="favorite-icon">
-                                <StarIcon />
-                            </span>
-                        </>
-                    )}
+                    onClickFavorite={() => handleAddToFavorites(res)}
                 >
                     <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.name} />
-                </Card>
+                </CustomCard>
             )}
         )}
         {loading && <Loading />}

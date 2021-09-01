@@ -16,6 +16,9 @@ const AppNav = () => {
         <li>
           <Link className={module === 'characters' ? 'selected-link ' : ''}  to="/characters">Characters</Link>
         </li>
+        <li>
+          <Link className={module === 'favorites' ? 'selected-link ' : ''}  to="/favorites">Favorites</Link>
+        </li>
       </ul>
     </>
   );

@@ -1,25 +1,13 @@
-import React, { Suspense, useContext, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import Loading from './components/animations/Loading';
 import AppNav from './components/nav/AppNav';
-import StoreProvider, { store } from './store';
+import StoreProvider from './store';
 
-const Module = React.lazy(() => import('./components/nav/Module'));
+const Modules = React.lazy(() => import('./components/nav/Modules'));
 
 function Main() {
-  const { dispatch } = useContext(store);
-
-  function getItemsFromLocal(){
-    let temp = [];
-    for (let i = 0; i < localStorage.length; i += 1) {
-      temp.push(localStorage.getItem(localStorage.key(i)));
-    }
-    dispatch({actionType: 'INITIALIZE', payload: temp});
-}
-  useEffect(() => {
-    getItemsFromLocal();
-  }, [])
   return (
     <Suspense fallback={<Loading />}>
       <Router>
@@ -28,7 +16,7 @@ function Main() {
             <nav className="app-header">
               <AppNav />
             </nav>
-            <Module />
+            <Modules />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
