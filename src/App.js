@@ -1,13 +1,27 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useContext, useEffect } from 'react';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import Loading from './components/animations/Loading';
 import AppNav from './components/nav/AppNav';
-import StoreProvider from './store';
+import StoreProvider, { store } from './store';
 
 const Modules = React.lazy(() => import('./components/nav/Modules'));
 
 function Main() {
+  const { dispatch } = useContext(store);
+  function initialize() {
+    const payload = {};
+    for (let i = 0; i < localStorage.length; i += 1) {
+      const key = localStorage.key(i)
+      const item = localStorage.getItem(key);
+      payload[key] = JSON.parse(item);
+    }
+    console.log(payload);
+    dispatch({ actionType: 'INITIALIZE', payload });
+  }
+  useEffect(() => {
+    initialize();
+  }, []);
   return (
     <Suspense fallback={<Loading />}>
       <Router>

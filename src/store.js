@@ -11,14 +11,15 @@ const { Provider } = store;
 const StoreProvider = ({ children }) => {
 
   const addFavorite = (stt, type, payload) => {
-    console.log(stt, type, payload)
     let result = [];
     if (stt[type]) {
-      result = stt[type].push(payload);
+      stt[type].push(payload);
+      result = stt[type]
     } else {
       result = [payload];
     }
-    localStorage.setItem(`${type}`, result);
+    localStorage.removeItem(`${type}`);
+    localStorage.setItem(`${type}`, JSON.stringify(result));
     return result;
   };
 
@@ -27,7 +28,8 @@ const StoreProvider = ({ children }) => {
     if (stt[type]) {
       result = stt[type].filter((item) => item.id !== payload);
     }
-    localStorage.setItem (`${type}`, result);
+    localStorage.removeItem(`${type}`);
+    localStorage.setItem(`${type}`, JSON.stringify(result));
     return result;
   };
 
