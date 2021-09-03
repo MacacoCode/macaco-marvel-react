@@ -48,14 +48,14 @@
 .searchbar-container {
   display: flex;
   justify-content: center;
-  min-width: 40vw;
+  max-width: 40vw;
   height: 30px;
-  color: #242424;
+  color: #242424
 }
 
 @media (max-width: 480px) {
   .searchbar-container {
-    min-width: 70vw;
+    max-width: 70vw;
   }
 }
 

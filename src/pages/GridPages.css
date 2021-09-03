@@ -13,14 +13,22 @@
     float: right;
 }
   
-  @media (max-width: 1024px) {
-      .grid-page-item {
-          flex-basis: 50%;
-      }
+@media (max-width: 1024px) {
+    .grid-page-item {
+        flex-basis: 50%;
     }
-  
-  @media (max-width: 480px) {
-      .grid-page-item {
-          flex-basis: auto;
-      }
   }
+
+@media (max-width: 480px) {
+    .grid-page-item {
+        flex-basis: auto;
+    }
+}
+
+.searchbar-positioning {
+  margin-bottom: 40px;
+}
+.searchbar-positioning * {
+  margin-left: auto;
+  margin-right: auto;
+}

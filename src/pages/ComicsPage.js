@@ -3,6 +3,7 @@ import Loading from '../components/animations/Loading';
 import SpidermanAnimation from '../components/animations/SpidermanAnimation';
 import CustomCard from '../components/CustomCard';
 import Image from '../components/templates/Image';
+import Searchbar from '../components/templates/Searchbar';
 import { API_KEY, MARVEL_API } from '../constants';
 import useFetch from '../hooks/useFetch';
 import { store } from '../store';
@@ -54,36 +55,41 @@ const ComicsPage = () => {
     }, [results]);
     if (loading && data.length === 0) return <SpidermanAnimation loading={true} />
     return (
-      <div className="grid-page">
-        {data && data.length > 0 && data.map((res, index) => {
-            if (data.length === index + 1) {
+      <>
+        <div className="searchbar-positioning">
+            <Searchbar />
+        </div>
+        <div className="grid-page">
+            {data && data.length > 0 && data.map((res, index) => {
+                if (data.length === index + 1) {
+                    return (
+                        <CustomCard
+                            cardClassName="grid-page-item"
+                            iconClassName="favorite-icon"
+                            title={res.title}
+                            key={`${res.id}-${index}`}
+                            refValue={lasItemElementRef}
+                            onClickFavorite={() => handleAddToFavorites(res)}
+                        >
+                            <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.title} />
+                        </CustomCard>
+                    )
+                }
                 return (
                     <CustomCard
                         cardClassName="grid-page-item"
                         iconClassName="favorite-icon"
                         title={res.title}
                         key={`${res.id}-${index}`}
-                        refValue={lasItemElementRef}
                         onClickFavorite={() => handleAddToFavorites(res)}
                     >
                         <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.title} />
                     </CustomCard>
-                )
-            }
-            return (
-                <CustomCard
-                    cardClassName="grid-page-item"
-                    iconClassName="favorite-icon"
-                    title={res.title}
-                    key={`${res.id}-${index}`}
-                    onClickFavorite={() => handleAddToFavorites(res)}
-                >
-                    <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.title} />
-                </CustomCard>
+                )}
             )}
-        )}
-        {loading && <Loading />}
-      </div>
+            {loading && <Loading />}
+        </div>
+      </>
     );
 }
 
