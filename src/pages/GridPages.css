@@ -1,28 +1,28 @@
 .grid-page {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding-bottom: 50px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-bottom: 50px;
+}
+
 .grid-page-item {
-    flex-basis: 25%;
-    flex-grow: 0;
-  }
+  flex-basis: 25%;
+  flex-grow: 0;
+}
 .favorite-icon {
-    float: right;
+  float: right;
 }
   
 @media (max-width: 1024px) {
-    .grid-page-item {
-        flex-basis: 50%;
-    }
+  .grid-page-item {
+    flex-basis: 50%;
   }
+}
 
 @media (max-width: 480px) {
-    .grid-page-item {
-        flex-basis: auto;
-    }
+  .grid-page-item {
+    flex-basis: auto;
+  }
 }
 
 .searchbar-positioning {

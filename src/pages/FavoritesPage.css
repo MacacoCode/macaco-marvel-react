@@ -3,21 +3,24 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: flex-start;
+
 }
 .favorites-comics, .favorites-characters {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     padding-bottom: 50px;
     flex-basis: 50%;
 }
 .favorites-page-item {
     width: auto;
     flex-basis: 50%;
+    flex-grow: 0;
 }
 
 .favorites-page-title {
     flex-basis: 100%;
+    flex-grow: 0;
 }
 @media (max-width: 1024px) {
     .favorites-page-item {
