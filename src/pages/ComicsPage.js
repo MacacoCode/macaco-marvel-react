@@ -13,15 +13,19 @@ import './GridPages.css';
 const limit = 16;
 
 const ComicsPage = () => {
+    const [inputValue, setInputValue] = useState('');
+    const [titleParam, setTitleParam] = useState('');
     const { state: { comics = [] }, dispatch } = useContext(store);
     const [offset, setOffset] = useState(0);
     const [fetchData, setFetchData] = useState(false);
     const [data, setData] = useState([]);
-    const { data: { results }, loading, error, status } = useFetch(`${MARVEL_API}/v1/public/comics${API_KEY}&offset=${offset}&limit=${limit}`, fetchData);
+    const [dataTotal, setDataTotal] = useState(0);
+    const { data: { results, total }, loading, error, status } = useFetch(`${MARVEL_API}/v1/public/comics${API_KEY}&offset=${offset}&limit=${limit}${titleParam}`, fetchData);
 
     const observer = useRef(null); 
     const lasItemElementRef = useCallback((node) => {
         if (loading) return;
+        if (offset + limit >= dataTotal) return;
         if (observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
@@ -34,6 +38,27 @@ const ComicsPage = () => {
 
     const handleAddToFavorites = (payload) => {
         dispatch({ actionType: 'ADDFAVORITE', type: 'favoriteComics', payload })
+    };
+
+    const setSearchParams = (val = '') => {
+        let title = '';
+        if (val.length > 0) {
+            title = `&titleStartsWith=${val}`;
+        }
+        return { title };
+    };
+
+    const handleOnSearch = async () => {
+        const { title } = setSearchParams(inputValue);
+        await setTitleParam(title);
+        await setData([]);
+        await setOffset(0);
+        setFetchData(true);
+    };
+
+    const handleInputChange = (e) => {
+        const { target: { value } } = e;
+        setInputValue(value);
     };
 
     useEffect(() => {
@@ -50,6 +75,7 @@ const ComicsPage = () => {
         if (results && results.length > 0 && status === 200) {
             const res = [...data, ...results];
             setData(res);
+            setDataTotal(total);
             dispatch({ actionType: 'ADDTOSTATE', type: 'comics', payload: res });
         }
     }, [results]);
@@ -57,18 +83,23 @@ const ComicsPage = () => {
     return (
       <>
         <div className="searchbar-positioning">
-            <Searchbar />
+            <Searchbar
+                placeholder="Search a Comic!"
+                inputValue={inputValue}
+                onInputChange={handleInputChange}
+                onSearch={handleOnSearch}
+            />
         </div>
         <div className="grid-page">
             {data && data.length > 0 && data.map((res, index) => {
                 if (data.length === index + 1) {
                     return (
                         <CustomCard
+                            refValue={lasItemElementRef}
                             cardClassName="grid-page-item"
                             iconClassName="favorite-icon"
                             title={res.title}
                             key={`${res.id}-${index}`}
-                            refValue={lasItemElementRef}
                             onClickFavorite={() => handleAddToFavorites(res)}
                         >
                             <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.title} />

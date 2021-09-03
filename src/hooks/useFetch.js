@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const defaultData = { results: [] };
+const defaultData = { results: [], total: 0 };
 
 function useFetch(url, flag, options = {}) {
   const [data, setData] = useState(defaultData);
