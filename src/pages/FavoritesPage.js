@@ -3,6 +3,7 @@ import SpidermanAnimation from '../components/animations/SpidermanAnimation';
 import CustomCard from '../components/CustomCard';
 import Image from '../components/templates/Image';
 import { store } from '../store';
+import checkFavorite from '../utilities/checkFavorite';
 import './FavoritesPage.css';
 
 const FavoritesPage = () => {
@@ -15,7 +16,7 @@ const FavoritesPage = () => {
                 {favoriteComics ? favoriteComics.map((res) => (
                     <CustomCard
                         cardClassName="favorites-page-item"
-                        iconClassName="favorite-icon"
+                        iconClassName={checkFavorite(res, favoriteComics) ? 'selected-star favorite-icon' : "favorite-icon"}
                         title={res.title}
                         key={res.id}
                     >
@@ -30,7 +31,7 @@ const FavoritesPage = () => {
                 {favoriteCharacters ? favoriteCharacters.map((res) => (
                     <CustomCard
                         cardClassName="favorites-page-item"
-                        iconClassName="favorite-icon"
+                        iconClassName={checkFavorite(res, favoriteCharacters) ? 'selected-star favorite-icon' : "favorite-icon"}
                         title={res.name}
                         key={res.id}
                     >
