@@ -7,6 +7,7 @@ import Searchbar from '../components/templates/Searchbar';
 import { API_KEY, MARVEL_API } from '../constants';
 import useFetch from '../hooks/useFetch';
 import { store } from '../store';
+import checkFavorite from '../utilities/checkFavorite';
 import { compareDataParams } from '../utilities/compareDataParams';
 import './GridPages.css';
 
@@ -15,7 +16,7 @@ const limit = 16;
 const CharactersPage = () => {
     const [inputValue, setInputValue] = useState('');
     const [nameParam, setNameParam] = useState('');
-    const { state: { characters = [] }, dispatch } = useContext(store);
+    const { state: { characters = [], favoriteCharacters }, dispatch } = useContext(store);
     const [offset, setOffset] = useState(0);
     const [fetchData, setFetchData] = useState(false);
     const [data, setData] = useState([]);
@@ -97,7 +98,7 @@ const CharactersPage = () => {
                         <CustomCard
                             refValue={lasItemElementRef}
                             cardClassName="grid-page-item"
-                            iconClassName="favorite-icon"
+                            iconClassName={checkFavorite(res, favoriteCharacters) ? 'selected-star favorite-icon' : "favorite-icon"}
                             title={res.name}
                             key={`${res.id}-${index}`}
                             onClickFavorite={() => handleAddToFavorites(res)}
@@ -109,7 +110,7 @@ const CharactersPage = () => {
                 return (
                     <CustomCard
                         cardClassName="grid-page-item"
-                        iconClassName="favorite-icon"
+                        iconClassName={checkFavorite(res, favoriteCharacters) ? 'selected-star favorite-icon' : "favorite-icon"}
                         title={res.name}
                         key={`${res.id}-${index}`}
                         onClickFavorite={() => handleAddToFavorites(res)}

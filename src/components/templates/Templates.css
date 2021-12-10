@@ -7,7 +7,7 @@
     min-height: 200px;
     /* Add shadows to create the "card" effect */
     box-shadow: 0.01em 0.01em 0.1em 0.01em rgba(248, 248, 248, 0.438);
-    transition: 0.3s;
+    transition: 550ms;
     border-radius: 5px;
 }
 /* On mouse-over, add a deeper shadow */
@@ -94,7 +94,7 @@
   border-radius: 0px 15px 15px 0px;
   border: none;
   color:#FFFFFF;
-  transition: 400ms;
+  transition: 450ms;
 }
 
 .searchbar-search button:hover {

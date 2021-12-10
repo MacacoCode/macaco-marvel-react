@@ -11,4 +11,5 @@
 .star-icon:hover {
     transition: 500ms;
     fill: rgb(0, 17, 255);
+    cursor: pointer;
 }
