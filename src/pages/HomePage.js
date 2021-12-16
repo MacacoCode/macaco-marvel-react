@@ -11,8 +11,8 @@ const HomePage = () => {
   const [lastComic, setLastComic] = useState(null);
   const [lastCharacter, setLastCharacter] = useState(null);
   useEffect(() => {
-    if (favoriteComics.length > 0) setLastComic(favoriteComics[favoriteComics.length - 1]);
-    if (favoriteCharacters.length > 0) setLastCharacter(favoriteCharacters[favoriteCharacters.length - 1]);
+    if (favoriteComics && favoriteComics.length > 0) setLastComic(favoriteComics[favoriteComics.length - 1]);
+    if (favoriteCharacters && favoriteCharacters.length > 0) setLastCharacter(favoriteCharacters[favoriteCharacters.length - 1]);
   }, []);
   return (
     <div className="home-page">
