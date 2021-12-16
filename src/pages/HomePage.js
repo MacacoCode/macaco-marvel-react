@@ -21,26 +21,34 @@ const HomePage = () => {
         <div className="last-added">
           <div className='last-added-item'>
             <h2>Last Comic Added</h2>
-            {!lastComic && <Loading />}
-            {lastComic && (
-              <Card
-                header={lastComic.title}
-                key={lastComic.id}
-              >
-                <Image src={`${lastComic.thumbnail.path}.${lastComic.thumbnail.extension}`} alt={lastComic.title} />
-              </Card>
+            {favoriteComics && (
+              <>
+                {!lastComic && <Loading />}
+                {lastComic && (
+                  <Card
+                    header={lastComic.title}
+                    key={lastComic.id}
+                  >
+                    <Image src={`${lastComic.thumbnail.path}.${lastComic.thumbnail.extension}`} alt={lastComic.title} />
+                  </Card>
+                )}
+              </>
             )}
           </div>
           <div className='last-added-item'>
             <h2>Last Character Added</h2>
-            {!lastCharacter && <Loading />}
-            {lastCharacter && (
-              <Card
-                header={lastCharacter.name}
-                key={lastCharacter.id}
-              >
-                <Image src={`${lastCharacter.thumbnail.path}.${lastCharacter.thumbnail.extension}`} alt={lastCharacter.title} />
-              </Card>
+            {favoriteCharacters && (
+              <>
+                {!lastCharacter && <Loading />}
+                {lastCharacter && (
+                  <Card
+                    header={lastCharacter.name}
+                    key={lastCharacter.id}
+                  >
+                    <Image src={`${lastCharacter.thumbnail.path}.${lastCharacter.thumbnail.extension}`} alt={lastCharacter.title} />
+                  </Card>
+                )}
+              </>
             )}
           </div>
         </div>
