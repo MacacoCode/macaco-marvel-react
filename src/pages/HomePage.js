@@ -20,9 +20,9 @@ const HomePage = () => {
         <SpidermanAnimation />
         <div className="last-added">
           <div className='last-added-item'>
-            <h2>Last Comic Added</h2>
             {favoriteComics && (
               <>
+                <h2>Last Comic Added</h2>
                 {!lastComic && <Loading />}
                 {lastComic && (
                   <Card
@@ -36,9 +36,9 @@ const HomePage = () => {
             )}
           </div>
           <div className='last-added-item'>
-            <h2>Last Character Added</h2>
             {favoriteCharacters && (
               <>
+                <h2>Last Character Added</h2>
                 {!lastCharacter && <Loading />}
                 {lastCharacter && (
                   <Card
