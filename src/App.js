@@ -14,7 +14,9 @@ function Main() {
     for (let i = 0; i < localStorage.length; i += 1) {
       const key = localStorage.key(i)
       const item = localStorage.getItem(key);
-      payload[key] = JSON.parse(item);
+      if (key === 'favoriteCharacters' || key === 'favoriteComics') {
+        payload[key] = JSON.parse(item);
+      }
     }
     dispatch({ actionType: 'INITIALIZE', payload });
   }

@@ -1,7 +1,7 @@
-import { API_KEY, MARVEL_API } from "../constants"
 
+const { REACT_APP_API_KEY, REACT_APP_MARVEL_API } = process.env;
 export const getApiData = async (toFetch = '') => {
-  const data = fetch(`${MARVEL_API}${toFetch}${API_KEY}`)
+  const data = fetch(`${REACT_APP_MARVEL_API}${toFetch}?apikey=${REACT_APP_API_KEY}`)
     .then((res) => res.json());
   
 }

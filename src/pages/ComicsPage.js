@@ -4,12 +4,12 @@ import SpidermanAnimation from '../components/animations/SpidermanAnimation';
 import CustomCard from '../components/CustomCard';
 import Image from '../components/templates/Image';
 import Searchbar from '../components/templates/Searchbar';
-import { API_KEY, MARVEL_API } from '../constants';
 import useFetch from '../hooks/useFetch';
 import { store } from '../store';
 import checkFavorite from '../utilities/checkFavorite';
 import { compareDataParams } from '../utilities/compareDataParams';
 import './GridPages.css';
+const { REACT_APP_API_KEY, REACT_APP_MARVEL_API }  = process.env;
 
 const limit = 16;
 
@@ -21,7 +21,9 @@ const ComicsPage = () => {
     const [fetchData, setFetchData] = useState(false);
     const [data, setData] = useState([]);
     const [dataTotal, setDataTotal] = useState(0);
-    const { data: { results, total }, loading, error, status } = useFetch(`${MARVEL_API}/v1/public/comics${API_KEY}&offset=${offset}&limit=${limit}${titleParam}`, fetchData);
+    const { data: { results, total }, loading, error, status } = useFetch(
+        `${REACT_APP_MARVEL_API}/v1/public/comics?apikey=${REACT_APP_API_KEY}&offset=${offset}&limit=${limit}${titleParam}`, fetchData
+    );
 
     const observer = useRef(null); 
     const lasItemElementRef = useCallback((node) => {
