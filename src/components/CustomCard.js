@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import StarIcon from './icons/StarIcon';
 import Card from './templates/Card';
 
-const CustomCard = ({ cardClassName, iconClassName, title, children, refValue, onClickFavorite }) => (
+const CustomCard = ({ cardClassName, iconClassName, image, title, children, refValue, onClickFavorite }) => (
     <Card
         refValue={refValue}
         className={cardClassName}
-        header={(
+        /*header={(
             <>
                 {title}
                 <span onClick={onClickFavorite} className={iconClassName}>
                     <StarIcon />
                 </span>
             </>
-        )}
+        )}*/
+        image={image}
     >
         {children}
     </Card>
@@ -27,6 +28,7 @@ CustomCard.defaultProps = {
     children: null,
     refValue: null,
     onClickFavorite: () => {},
+    image: '',
 };
 
 CustomCard.propTypes = {
@@ -34,6 +36,7 @@ CustomCard.propTypes = {
     iconClassName: PropTypes.string,
     title: PropTypes.node,
     children: PropTypes.node,
+    image: PropTypes.string,
     refValue: PropTypes.oneOfType([
         // Either a function
         PropTypes.func, 

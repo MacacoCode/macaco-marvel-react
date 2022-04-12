@@ -1,45 +1,51 @@
 /* Card.js Styles */
 
 .card-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 200px;
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0.01em 0.01em 0.1em 0.01em rgba(248, 248, 248, 0.438);
-    transition: 550ms;
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 200px;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0.01em 0.01em 0.1em 0.01em rgba(248, 248, 248, 0.438);
+  border-radius: 15px;
 }
 /* On mouse-over, add a deeper shadow */
-.card-container:hover {
-    box-shadow: 0 5px 10px 0 rgba(248, 248, 248, 0.658);
-  }
+.mask {
+  border-radius: 15px;
+  transition: all 0.4s ease-in-out;
+}
+.mask:hover {
+  opacity: 1;
+
+  background-color:rgba(0,0,0,0.7);
+}
+.mask .mask-components {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
   
 .card-header, .card-footer {
-    min-height: 25px;
-    padding: 2px 16px;
-      
+  min-height: 25px;
 }
 .card-children {
-    display: flex;
-    flex: 1;
-    min-height: 150px;
-    padding: 2px 16px;
+  display: flex;
+  position: relative;
+  flex: 1;
+  min-height: 150px;
+  border-radius: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .card-children img {
-    border-radius: 5px 5px 0 0;
+  border-radius: 15px;
 }
 
 /* Image.js Styles*/
 
 .image {
-    width: 100%;
-}
-
-/* Mask.js Styles */
-
-.mask {
-    height: 100%;
     width: 100%;
 }
 
@@ -49,7 +55,7 @@
   display: flex;
   justify-content: center;
   max-width: 40vw;
-  height: 30px;
+  height: 50px;
   color: #242424
 }
 
@@ -62,28 +68,29 @@
 .searchbar-input {
   background-color: white;
   flex-basis: 90%;
-  border-radius: 15px 0px 0px 15px;
+  font-family: 'Roboto';
+  border-radius: 5px 0px 0px 5px;
 }
 
 .searchbar-input input {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border-radius: 15px 0px 0px 15px;
+  border-radius: 5px 0px 0px 5px;
   padding-left: 10px;
 }
 
 .searchbar-input input:focus {
   border: none;
-  border-radius: 15px 0px 0px 15px;
-  box-shadow: 0 0 0 2px #447bbe;
+  border-radius: 5px 0px 0px 5px;
+  box-shadow: 0 0 0 2px #6e8096;
   outline: none;
   transition: 200ms;
 }
 
 .searchbar-search {
   flex-basis: 10%;
-  background-color: #447bbe;
+  background-color: #6e8096;
   border-radius: 0px 15px 15px 0px;
 }
 
@@ -91,7 +98,7 @@
   width: 100%;
   height: 100%;
   background-color: #2b3784; 
-  border-radius: 0px 15px 15px 0px;
+  border-radius: 0px 5px 5px 0px;
   border: none;
   color:#FFFFFF;
   transition: 450ms;
@@ -100,5 +107,5 @@
 .searchbar-search button:hover {
   cursor: pointer;
   transition: 400ms;
-  background-color: #447bbe;
+  background-color: #6e8096;
 }

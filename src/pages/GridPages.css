@@ -2,26 +2,33 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
+  row-gap: 25px;
   padding-bottom: 50px;
 }
 
 .grid-page-item {
-  flex-basis: 25%;
+  flex-basis: 21%;
   flex-grow: 0;
 }
 .favorite-icon {
   float: right;
 }
+.loading {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+}
   
 @media (max-width: 1024px) {
   .grid-page-item {
-    flex-basis: 50%;
+    flex-basis: 40%;
   }
 }
 
 @media (max-width: 480px) {
   .grid-page-item {
-    flex-basis: auto;
+    flex-basis: 80%;
   }
 }
 

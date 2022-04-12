@@ -33,11 +33,11 @@ const ComicsPage = () => {
         observer.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 setOffset((currState) => currState + limit);
-                if (compareDataParams(data.length, offset, limit)) setFetchData(true);
+                if (compareDataParams(data.length, offset+limit, limit)) setFetchData(true);
             }
         });
         if (node) observer.current.observe(node);
-    }, [loading]);
+    }, [loading, dataTotal]);
 
     const handleAddToFavorites = (payload) => {
         dispatch({ actionType: 'ADDFAVORITE', type: 'favoriteComics', payload })
@@ -104,6 +104,7 @@ const ComicsPage = () => {
                             title={res.title}
                             key={`${res.id}-${index}`}
                             onClickFavorite={() => handleAddToFavorites(res)}
+                            image={`${res.thumbnail.path}.${res.thumbnail.extension}`}
                         >
                             <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.title} />
                         </CustomCard>
@@ -116,12 +117,17 @@ const ComicsPage = () => {
                         title={res.title}
                         key={`${res.id}-${index}`}
                         onClickFavorite={() => handleAddToFavorites(res)}
+                        image={`${res.thumbnail.path}.${res.thumbnail.extension}`}
                     >
                         <Image src={`${res.thumbnail.path}.${res.thumbnail.extension}`} alt={res.title} />
                     </CustomCard>
                 )}
             )}
-            {loading && <Loading />}
+            {loading && (
+                <div className='loading'>
+                    <Loading />
+                </div>
+            )}
         </div>
       </>
     );

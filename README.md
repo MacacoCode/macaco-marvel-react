@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+## Missing
+```
+### Burger dropdown for phones
+### Improving searchbar styles
+### Eye Icon and Modal to preview info of the comic and full image (bind it to the react router)
+### Favorites panels to show the characters and comics using same components as in the other pages
+```
